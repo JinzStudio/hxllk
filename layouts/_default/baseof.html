@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+</head>
+<body>
+  <header>
+    <h1><a href="{{ "/" | relURL }}">{{ .Site.Title }}</a></h1>
+    <nav>
+      <a href="{{ "/" | relURL }}">Home</a>
+      <a href="{{ "/post/" | relURL }}">Posts</a>
+    </nav>
+    <hr>
+  </header>
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer>
+    <hr>
+    <p>© {{ now.Format "2006" }} JinzStudio</p>
+  </footer>
+</body>
+</html>

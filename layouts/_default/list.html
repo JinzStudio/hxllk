@@ -1,0 +1,21 @@
+﻿{{ define "title" }}{{ .Title }} | {{ .Site.Title }}{{ end }}
+{{ define "main" }}
+<h2>{{ .Title }}</h2>
+{{ if .Paginator }}
+  {{ $p := .Paginator }}
+  <ul>
+    {{ range $p.Pages }}
+      <li>
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a> — <small>{{ .Date.Format "2006-01-02" }}</small>
+      </li>
+    {{ end }}
+  </ul>
+  <div>
+    {{ if $p.HasPrev }}<a href="{{ $p.Prev.URL }}">上一页</a>{{ end }}
+    {{ if and $p.HasPrev $p.HasNext }} | {{ end }}
+    {{ if $p.HasNext }}<a href="{{ $p.Next.URL }}">下一页</a>{{ end }}
+  </div>
+{{ else }}
+  <p>暂无内容。</p>
+{{ end }}
+{{ end }}
